@@ -1,0 +1,98 @@
+﻿
+
+@model IEnumerable<FACLSchichtbericht.Models.BerichtTransportModel>
+
+
+
+@{ ViewData["Title"] = "Index BerichtTransport"; }
+<partial name="_NavPartial" />
+
+
+
+<h1>abgeschlossene Berichte Transport</h1>
+
+
+
+<p>
+    <a asp-action="IndexBerichtTransport">Zurück</a>
+</p>
+<div class="card">
+    <div class="card-header"></div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Referenznummer
+                    </th>
+
+
+
+                    <th>
+                        Datum
+                    </th>
+
+
+
+                    <th>
+                        Schicht
+                    </th>
+                    <th>
+                        Schichtbeurteilung
+                    </th>
+
+
+
+                    <th>
+                        Aktion
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ID)
+                        </td>
+
+
+
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.schichtdatum)
+                        </td>
+
+
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.schichttyp)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.schichtbeurteilung)
+                        </td>
+
+
+
+                        <td>
+                            <a asp-action="DetailsBerichtTransport" asp-route-id="@item.ID">Details</a>
+                        </td>
+                    </tr>
+}
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer"></div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

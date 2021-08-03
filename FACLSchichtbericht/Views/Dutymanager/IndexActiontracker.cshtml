@@ -1,0 +1,115 @@
+﻿<partial name="_navPartial" />
+
+@model IEnumerable<FACLSchichtbericht.Models.ActiontrackerModel>
+
+@{ ViewData["Title"] = "Index"; }
+
+<h1>Offene Actiontrackereinträge</h1>
+
+<p>
+    <a asp-action="CreateActiontracker">Neuen Actiontrackereintrag anlegen >></a> || <a asp-action="IndexActiontrackerabgeschlossen"> abgeschlossene Actriontrackereinträge</a>
+</p>
+
+<div class="card">
+    <div class="card-header"></div>
+    <div class="card-body">
+        <table class="table table-sm table-striped">
+            <thead>
+                <tr>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Datum)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Von)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Bis)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Action)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Priorität)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Bereich)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Beschreibung)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Maßnahme)
+                    </th>
+
+                    <th>
+                        Gehört zu
+                    </th>
+                    <th>Aktion</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Datum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Von)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bis)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Action)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Priorität)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bereich)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Beschreibung)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Maßnahme)
+        </td>
+
+
+        <td>
+            @if (item.BerichtBD420_ID != null)
+            {
+@Html.Raw("BerichtBD420: ")
+                    @Html.DisplayFor(modelItem => item.BerichtBD420_ID)}
+
+            @if (item.BerichtBD451_ID != null)
+            {
+@Html.Raw("BerichtBD451: ")
+
+                    @Html.DisplayFor(modelItem => item.BerichtBD451_ID)}
+
+            @if (item.BerichtBU320_ID != null)
+            {
+@Html.Raw("BerichtBU320: ")
+
+                    @Html.DisplayFor(modelItem => item.BerichtBU320_ID)}
+
+            @if (item.BerichtBU420_ID != null)
+            {
+@Html.Raw("BerichtBU420: ")
+                    @Html.DisplayFor(modelItem => item.BerichtBU420_ID)}
+        </td>
+        <td>
+            <a asp-action="EditActiontracker" asp-route-id="@item.ID">Edit</a> |
+            <a asp-action="DetailsActiontracker" asp-route-id="@item.ID">Details</a> |
+            <a asp-action="DeleteActiontracker" asp-route-id="@item.ID">Delete</a>
+        </td>
+    </tr>}
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer"></div>
+</div>

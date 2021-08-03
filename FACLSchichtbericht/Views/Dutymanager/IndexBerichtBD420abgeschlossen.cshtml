@@ -1,0 +1,77 @@
+﻿<partial name="_navPartial" />
+
+<div class="card">
+    <div class="card-header"></div>
+    <div class="card-body">
+        <table id="tblberichtbd420" class="table table-sm table-striped" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Referenznummer</th>
+                    <th>Datum</th>
+                    <th>Schicht</th>
+                    <th>abgeschlossen</th>
+                    <th>freigegeben</th>
+                    <th>Aktion</th>
+
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Referenznummer</th>
+                    <th>Datum</th>
+                    <th>Schicht</th>
+                    <th>abgeschlossen</th>
+                    <th>freigegeben</th>
+                    <th>Aktion</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div class="card-footer"></div>
+</div>
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+
+
+
+        $(document).ready(function () {
+            $('#tblberichtbd420').DataTable({
+              "order": [[5, "asc"]],
+              stateSave: true,
+            "ajax": {
+                "url": "/Dutymanager/GetDataBerichtBD420abgeschlossen",
+                "type": "GET",
+                "datatype" : "json"
+            },
+            "columns": [
+                { "data": "id" },
+                { "data": "schichtdatum" },
+                { "data": "schichttyp" },
+
+                { "data": "istabgeschlossen" },
+                { "data": "istfreigegeben" },
+
+                {
+                  "data": "id",
+                    "render": function (data, type, row, meta) {
+                        if (type === 'display') {
+                            data = '<a href="@Url.Content("~/Dutymanager/EditBerichtBD420abgeschlossen/")' + data + '">Edit</a> | <a href="@Url.Content("~/Dutymanager/DetailsBerichtBD420abgeschlossen/")' + data + '">Details</a> | <a href="@Url.Content("~/Dutymanager/DeleteBerichtBD420abgeschlossen/")'+ data +'">Delete</a>';
+                        }
+
+                        return data;
+                    }
+                }
+            ]
+
+        });
+    });
+
+    </script>
+
+}

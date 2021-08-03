@@ -1,0 +1,40 @@
+﻿@model FACLSchichtbericht.Models.DropdownoptionsModel
+
+@{
+    ViewData["Title"] = "EditDropdownoption";
+}
+<partial name="_navPartial" />
+<h1>EditDropdownoptions</h1>
+
+<h4>DropdownoptionsModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditDropdownoption">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+
+            <div class="form-group">
+                <label asp-for="Selectbezeichnung" class="control-label"></label>
+                <input asp-for="Selectbezeichnung" class="form-control" />
+                <span asp-validation-for="Selectbezeichnung" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Optionbezeichnung" class="control-label"></label>
+                <input asp-for="Optionbezeichnung" class="form-control" />
+                <span asp-validation-for="Optionbezeichnung" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

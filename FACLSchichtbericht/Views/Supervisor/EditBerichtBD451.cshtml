@@ -1,0 +1,837 @@
+﻿@model FACLSchichtbericht.Models.BerichtBD451Model
+
+@{
+    ViewData["Title"] = "Edit";
+}
+@{
+    var bericht = ViewData.Model;
+}
+<partial name="_NavPartial" />
+
+<h1>
+    Bearbeitung Bericht BD 451<br />
+</h1>
+<h6 class="card-title text-muted">Referenznummer: @Model.ID vom @(Model.schichtdatum.ToLongDateString() ) ,  @(Model.schichttyp + "schicht").  </h6>
+
+<hr />
+
+<form asp-action="EditBerichtBD451">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="ID" />
+
+
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+            <div class="">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Bericht
+                        </button>
+                    </h5>
+
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="form-group col-md-2">
+                                    <label asp-for="Leihscanner" class="control-label"></label>
+                                    <input asp-for="Leihscanner" class="form-control" />
+                                    <span asp-validation-for="Leihscanner" class="text-danger"></span>
+                                </div>
+                                <div class="form-group  col-md-2">
+                                    <label asp-for="Leihstapler" class="control-label"></label>
+                                    <input asp-for="Leihstapler" class="form-control" />
+                                    <span asp-validation-for="Leihstapler" class="text-danger"></span>
+                                </div>
+                                <div class="form-group  col-md-2">
+                                    <label asp-for="CDSStandard" class="control-label"></label>
+                                    <input asp-for="CDSStandard" class="form-control" />
+                                    <span asp-validation-for="CDSStandard" class="text-danger"></span>
+                                </div>
+                                <div class="form-group  col-md-2">
+                                    <label asp-for="CDSDGR" class="control-label"></label>
+                                    <input asp-for="CDSDGR" class="form-control" />
+                                    <span asp-validation-for="CDSDGR" class="text-danger"></span>
+                                </div>
+                                <div class="form-group  col-md-2">
+                                    <label asp-for="Arbeitsunfall" class="control-label"></label>
+                                    <Select asp-for="Arbeitsunfall" class="form-control">
+                                        <option value="Nein">Nein</option>
+                                        <option value="Ja">Ja</option>
+                                    </Select>
+                                    <span asp-validation-for="Arbeitsunfall" class="text-danger"></span>
+                                </div>
+                                <div class="form-group  col-md-2">
+                                    <label asp-for="schichtbeurteilung" class="control-label">Schichtbeurteilung</label>
+                                    <Select asp-for="schichtbeurteilung" class="form-control">
+                                        <option value="Mittel">Mittel</option>
+                                        <option value="Gut">Gut</option>
+                                        <option value="Schlecht">Schlecht</option>
+
+                                    </Select>
+                                    <span asp-validation-for="schichtbeurteilung" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col">
+                                    <h4 class="text-danger"> Personal</h4>
+                                    <table class="table table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col"></th>
+                                                <th>Soll</th>
+                                                <th>Ist</th>
+                                                <th>Krank</th>
+                                                <th>Zusatzstunden</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">Supervisor</th>
+                                                <td>
+                                                    <div class="form-group">
+                                                        @*<label asp-for="SupervisorSoll" class="control-label"></label>*@
+                                                        <input asp-for="SupervisorSoll" class="form-control" readonly />
+                                                        <span asp-validation-for="SupervisorSoll" class="text-danger"></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        @*<label asp-for="SupervisorIst" class="control-label"></label>*@
+                                                        <input asp-for="SupervisorIst" class="form-control" />
+                                                        <span asp-validation-for="SupervisorIst" class="text-danger"></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+
+                                                    <div class="form-group">
+                                                        @*<label asp-for="SupervisorKrank" class="control-label"></label>*@
+                                                        <input asp-for="SupervisorKrank" class="form-control" />
+                                                        <span asp-validation-for="SupervisorKrank" class="text-danger"></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+
+                                                    <div class="form-group">
+                                                        @*<label asp-for="SupervisorZusatz" class="control-label"></label>*@
+                                                        <input asp-for="SupervisorZusatz" class="form-control" />
+                                                        <span asp-validation-for="SupervisorZusatz" class="text-danger"></span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Checker</th>
+                                                <td>
+
+                                                    <div class="form-group">
+                                                        @*<label asp-for="CheckerSoll" class="control-label"></label>*@
+                                                        <input asp-for="CheckerSoll" class="form-control" readonly />
+                                                        <span asp-validation-for="CheckerSoll" class="text-danger"></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+
+                                                    <div class="form-group">
+                                                        @*<label asp-for="CheckerIst" class="control-label"></label>*@
+                                                        <input asp-for="CheckerIst" class="form-control" />
+                                                        <span asp-validation-for="CheckerIst" class="text-danger"></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+
+                                                    <div class="form-group">
+                                                        @*<label asp-for="CheckerKrank" class="control-label"></label>*@
+                                                        <input asp-for="CheckerKrank" class="form-control" />
+                                                        <span asp-validation-for="CheckerKrank" class="text-danger"></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+
+                                                    <div class="form-group">
+                                                        @*<label asp-for="CheckerZusatz" class="control-label"></label>*@
+                                                        <input asp-for="CheckerZusatz" class="form-control" />
+                                                        <span asp-validation-for="CheckerZusatz" class="text-danger"></span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Aufbauer</th>
+                                                <td>
+
+                                                    <div class="form-group">
+                                                        @*<label asp-for="AufbauerSoll" class="control-label"></label>*@
+                                                        <input asp-for="AufbauerSoll" class="form-control" readonly />
+                                                        <span asp-validation-for="AufbauerSoll" class="text-danger"></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+
+                                                    <div class="form-group">
+                                                        @*<label asp-for="AufbauerIst" class="control-label"></label>*@
+                                                        <input asp-for="AufbauerIst" class="form-control" />
+                                                        <span asp-validation-for="AufbauerIst" class="text-danger"></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+
+                                                    <div class="form-group">
+                                                        @*<label asp-for="AufbauerKrank" class="control-label"></label>*@
+                                                        <input asp-for="AufbauerKrank" class="form-control" />
+                                                        <span asp-validation-for="AufbauerKrank" class="text-danger"></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+
+                                                    <div class="form-group">
+                                                        @*<label asp-for="AufbauerZusatz" class="control-label"></label>*@
+                                                        <input asp-for="AufbauerZusatz" class="form-control" />
+                                                        <span asp-validation-for="AufbauerZusatz" class="text-danger"></span>
+                                                    </div>
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Abfertiger</th>
+                                                <td>
+
+                                                    <div class="form-group">
+                                                        @*<label asp-for="AbfertigerIst" class="control-label"></label>*@
+                                                        <input asp-for="AbfertigerSoll" class="form-control" readonly />
+                                                        <span asp-validation-for="AbfertigerSoll" class="text-danger"></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+
+                                                    <div class="form-group">
+                                                        @*<label asp-for="AbfertigerSoll" class="control-label"></label>*@
+                                                        <input asp-for="AbfertigerIst" class="form-control" />
+                                                        <span asp-validation-for="AbfertigerIst" class="text-danger"></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        @*<label asp-for="AbfertigerKrank" class="control-label"></label>*@
+                                                        <input asp-for="AbfertigerKrank" class="form-control" />
+                                                        <span asp-validation-for="AbfertigerKrank" class="text-danger"></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        @*<label asp-for="AbfertigerZusatz" class="control-label"></label>*@
+                                                        <input asp-for="AbfertigerZusatz" class="form-control" />
+                                                        <span asp-validation-for="AbfertigerZusatz" class="text-danger"></span>
+                                                    </div>
+                                                </td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+
+
+                                </div>
+                                <div class="col">
+                                    <h4 class="text-danger">Reaktion Personalbedarf</h4>
+                                    <p class="text-muted">Hinweis: Die Daten werden in BD420 erfasst und müssen hier nicht bearbeitet werden.</p>
+                                    <table class="table table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th scope="col">LCC/LCC Fast</th>
+                                                <th scope="col">BULK FAST</th>
+                                                <th scope="col">LOCO</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">Mitarbeiter</th>
+                                                <td>
+                                                    <div class="form-group">
+                                                        @*<label asp-for="PbMiLCC" class="control-label"></label>*@
+                                                        <input class="form-control" readonly />
+                                                        <span class="text-danger"></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        @*<label asp-for="PbMiBulk" class="control-label"></label>*@
+                                                        <input class="form-control" readonly />
+                                                        <span class="text-danger"></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        @*<label asp-for="PbMiLoco" class="control-label"></label>*@
+                                                        <input class="form-control" readonly />
+                                                        <span class="text-danger"></span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Einheiten</th>
+                                                <td>
+                                                    <div class="form-group ">
+                                                        @*<label asp-for="PbEiLCC" class="control-label"></label>*@
+                                                        <input class="form-control " readonly />
+                                                        <span class="text-danger"></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        @*<label asp-for="PbEiBulk" class="control-label"></label>*@
+                                                        <input class="form-control" readonly />
+                                                        <span a class="text-danger"></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        @*<label asp-for="PbEiLoco" class="control-label"></label>*@
+                                                        <input class="form-control" readonly />
+                                                        <span class="text-danger"></span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Überhang</th>
+                                                <td id="uberLCC"></td>
+                                                <td id="uberBULK"> </td>
+                                                <td id="uberLOCO"></td>
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row ">
+
+                                <div class="col-md-3 ">
+                                    <h4 class="text-danger">Arbeitsvorrat</h4>
+                                    <table id="tblabreitsvorrat" class="table table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th scope="col">Loco</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">Awaiting</th>
+                                                <td>
+                                                    <div class="form-group">
+                                                        @*<label asp-for="AwaitingLCC" class="control-label"></label>*@
+                                                        <input asp-for="AwaitingLoco" class="form-control" />
+                                                        <span asp-validation-for="AwaitingLoco" class="text-danger"></span>
+                                                    </div>
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Pending</th>
+                                                <td>
+                                                    <div class="form-group">
+                                                        @*<label asp-for="Pending" class="control-label"></label>*@
+                                                        <input asp-for="PendingLoco" class="form-control" />
+                                                        <span asp-validation-for="PendingLoco" class="text-danger"></span>
+                                                    </div>
+                                                </td>
+
+
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Hal</th>
+                                                <td>
+                                                    <div class="form-group">
+                                                        @*<label asp-for="HalLCC" class="control-label"></label>*@
+                                                        <input asp-for="HalLoco" class="form-control" />
+                                                        <span asp-validation-for="HalLoco" class="text-danger"></span>
+                                                    </div>
+                                                </td>
+
+
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">BD Start</th>
+                                                <td>
+                                                    <div class="form-group">
+                                                        @*<label asp-for="BDStartLCC" class="control-label"></label>*@
+                                                        <input asp-for="BDStartLoco" class="form-control" />
+                                                        <span asp-validation-for="BDStartLoco" class="text-danger"></span>
+                                                    </div>
+                                                </td>
+
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="col-md-6 offset-md-3 ">
+                                    <h4 class="text-danger">Produktivität</h4>
+                                    <table class="table table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th scope="col">Menge</th>
+                                                <th scope="col">Stunden</th>
+                                                <th scope="col">Produktivität</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">abgefertigte ULD </th>
+                                                <td>
+                                                    <div class="form-group">
+                                                        @*<label asp-for="ULDMengeMenge" class="control-label"></label>*@
+                                                        <input asp-for="ULDMengeMenge" class="form-control" />
+                                                        <span asp-validation-for="ULDMengeMenge" class="text-danger"></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        @*<label asp-for="ULDMengeMAStunden" class="control-label"></label>*@
+                                                        <input asp-for="ULDMengeMAStunden" class="form-control" readonly />
+                                                        <span asp-validation-for="ULDMengeMAStunden" class="text-danger"></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        @*<label asp-for="ULDMengeProdu" class="control-label"></label>*@
+                                                        <input asp-for="ULDMengeProdu" class="form-control" readonly />
+                                                        <span asp-validation-for="ULDMengeProdu" class="text-danger"></span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">abgefertigte ULD KG</th>
+                                                <td>
+                                                    <div class="form-group">
+                                                        @*<label asp-for="ULDKG" class="control-label"></label>*@
+                                                        <input asp-for="ULDKGMenge" class="form-control" />
+                                                        <span asp-validation-for="ULDKGMenge" class="text-danger"></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        @*<label asp-for="ULDKGMAStunden" class="control-label"></label>*@
+                                                        <input asp-for="ULDKGMAStunden" class="form-control" readonly />
+                                                        <span asp-validation-for="ULDKGMAStunden" class="text-danger"></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        @*<label asp-for="ULDKGProdu" class="control-label"></label>*@
+                                                        <input asp-for="ULDKGProdu" class="form-control" readonly />
+                                                        <span asp-validation-for="ULDKGProdu" class="text-danger"></span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <input type="submit" value="Jetzt Speichern" class="btn btn-danger btn-lg btn-block" />
+
+                            </div>
+                            <div class="row" hidden="hidden">
+                                <div class="form-group">
+                                    <label asp-for="zuletztbearbeitetvon" class="control-label"></label>
+                                    <input asp-for="zuletztbearbeitetvon" value="@User.Identity.Name" class="form-control" />
+                                    <span asp-validation-for="zuletztbearbeitetvon" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="zuletztbearbeitetam" class="control-label"></label>
+                                    <input asp-for="zuletztbearbeitetam" value="@DateTime.Now" class="form-control" />
+                                    <span asp-validation-for="zuletztbearbeitetam" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="istfreigegeben" class="control-label"></label>
+                                    <input asp-for="istfreigegeben" value="false" class="form-control" />
+                                    <span asp-validation-for="istfreigegeben" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="istabgeschlossen" class="control-label"></label>
+                                    <input asp-for="istabgeschlossen" class="form-control" />
+                                    <span asp-validation-for="istabgeschlossen" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="schichttyp" class="control-label"></label>
+                                    <input asp-for="schichttyp" class="form-control" />
+                                    <span asp-validation-for="schichttyp" class="text-danger"></span>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label asp-for="erstelltam" class="control-label"></label>
+                                    <input asp-for="erstelltam" class="form-control" />
+                                    <span asp-validation-for="erstelltam" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="erstelltvon" class="control-label"></label>
+                                    <input asp-for="erstelltvon" class="form-control" />
+                                    <span asp-validation-for="erstelltvon" class="text-danger"></span>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Personal
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div>
+                        <input type="button" id="addpersonal" class="btn btn-danger" value="Peronsal aktualisieren" />
+                    </div>
+                    <p />
+                    <table id="personalplan" class="table" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>PK</th>
+                                <th>Name</th>
+                                <th>Vorname</th>
+                                <th>Jobtitel</th>
+                                <th>Einsatz als</th>
+                                <th>anwesend</th>
+                                <th>Mehrarbeit genehmight</th>
+                                <th>Bemerkung</th>
+                                <th>Aktion</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>PK</th>
+                                <th>Name</th>
+                                <th>Vorname</th>
+                                <th>Jobtitel</th>
+                                <th>Einsatz als</th>
+                                <th>anwesend</th>
+                                <th>Mehrarbeit genehmight</th>
+                                <th>Bemerkung</th>
+                                <th>Aktion</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Actiontracker
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="flex-column">
+                            @*<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#CreateActiontracker">
+                                    Actiontrackereintrag zum Bericht verfassen.
+                                </button>*@
+                            <a asp-action="CreateActiontracker">Neuen Actiontrackereintrag anlegen >></a>
+                        </div>
+                    </div>
+                    <table id="actiontracker" class="table" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Topic</th>
+                                <th>Priorität</th>
+                                <th>Von</th>
+                                <th>Bis</th>
+                                <th>Beschreibung</th>
+                                <th>Maßnahme</th>
+                                <th>Aktion</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Topic</th>
+                                <th>Priorität</th>
+                                <th>Von</th>
+                                <th>Bis</th>
+                                <th>Beschreibung</th>
+                                <th>Maßnahme</th>
+                                <th>Aktion</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</form>
+<hr />
+<!-- Button trigger modal abschließen -->
+
+<div class="row">
+    <div class="container">
+        <button type="button" class="btn btn-danger btn-lg btn-block" data-toggle="modal" data-target="#abschließenModal">
+            Bericht abschließen.
+        </button>
+    </div>
+</div>
+<!-- Modal abschließen-->
+<div class="modal fade" id="abschließenModal" tabindex="-1" role="dialog" aria-labelledby="abschließenModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="abschließenModal">Bericht abschließen.</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="card-text">
+                    Möchten Sie den Bericht entgültig abschließen?
+                    <br />                <br />
+
+
+                    Alle Einträge im Actiontracker und alle Einträge im Personalplan, die zu diesem Bericht gehören, werden alle als abgeschlossen gespeichert und können dann nicht mehr bearbeite werden.
+
+                </p>
+
+            </div>
+
+            <div class="modal-footer">
+                <form asp-action="AbschließenBerichtBD451">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="ID" />
+                    <div>
+                        <div class="form-group">
+                            <input type="hidden" asp-for="istabgeschlossen" value="true" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" asp-for="abgeschlossenam" value="@DateTime.Now" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" asp-for="abgeschlossenvon" value="@User.Identity.Name" class="form-control" />
+                        </div>
+                    </div>
+                    <input type="submit" value="Bericht entgültig abschließen!" class="btn btn-primary " />
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<hr />
+
+
+<div>
+    <a asp-action="IndexBerichtBD420">Back to List</a>
+</div>
+
+<!-- Modal create Actiontracker-->
+<div class="modal fade" id="CreateActiontracker" tabindex="-1" role="dialog" aria-labelledby="CreateActiontracker" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="CreateActiontracker">Bericht abschließen.</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+
+
+        $('#addpersonal').click( function ()
+        {
+
+            var Id = @bericht.ID;
+            var schichttyp = "@Html.Raw(@bericht.schichttyp)";
+            var datum = "@bericht.schichtdatum.ToShortDateString()";
+
+            $.ajax(
+                {
+                    url: '@Url.Action("AddPersonalBerichtBD451")',
+                    data: { 'id': Id, 'schichttyp': schichttyp, 'schichtdatum': datum },
+                    type: "POST",
+                    chache: false,
+                    success: function (data) {
+                        alert("Personal erfolgreich aktualisiert! Die Seite wird neu geladen.");
+                        location.reload();
+                },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                    }
+
+                });
+
+        });
+
+
+    //personalplan
+
+    $(document).ready(function () {
+        $('#personalplan').DataTable({
+            "ajax": {
+                "url": "/Supervisor/GetDataPersonalplanBerichtBD451_ID/@bericht.ID",
+                "type": "GET",
+                "datatype" : "json"
+            },
+            "columns": [
+                { "data": "pk" },
+                { "data": "nachname" },
+                { "data": "vorname" },
+                { "data": "jobtitel" },
+                { "data": "einsatzals" },
+                { "data": "anwesend" },
+                { "data": "mehrarbeitgenehmight"},
+                { "data": "bemerkung" },
+                {
+                  "data": "id",
+                    "render": function (data, type, row, meta) {
+                        if (type === 'display') {
+                            data = '<a href="@Url.Content("~/Supervisor/EditPersonalplan/")' + data + '">Edit</a> | <a href="@Url.Content("~/Supervisor/DetailsPersonalplan/")' + data + '">Details</a>';
+                        }
+
+                        return data;
+                    }
+                }
+            ]
+
+        });
+    });
+    //actiontracker
+    $(document).ready(function () {
+        $('#actiontracker').DataTable({
+            "ajax": {
+                "url": "/Supervisor/GetDataActiontrackerBerichtBD451_ID/@bericht.ID",
+                "type": "GET",
+                "datatype" : "json"
+            },
+            "columns": [
+                { "data": "action" },
+                { "data": "priorität" },
+                { "data": "von" },
+                { "data": "bis" },
+                { "data": "beschreibung" },
+                { "data": "maßnahme" },
+                {
+                    "data": "id",
+                    "render": function (data, type, row, meta) {
+                        if (type === 'display') {
+                            data ='<a href="@Url.Content("~/Supervisor/EditActiontracker/")' + data + '">Edit</a> | <a href="@Url.Content("~/Supervisor/DetailsActiontracker/")' + data + '">Details</a>';
+                        }
+
+                        return data;
+                    }
+                }
+            ]
+
+
+
+        });
+    });
+
+    //Berechnung Reaktion personalbedarf
+
+    $(document).ready(function (calc) {
+        //debugger
+        window.onkeyup = keyup;
+
+        var checkerIst;
+        var aufbauerIst;
+        var abfertigerIst;
+
+        var uldMenge;
+        var kgMenge;
+
+
+        var uldProdu;
+        var kgProdu;
+
+        var personalges;
+        var maStunden;
+
+        uldMenge = Number(document.getElementById("ULDMengeMenge").value);
+        kgMenge = Number(document.getElementById("ULDKGMenge").value);
+        checkerIst = Number(document.getElementById("CheckerIst").value);
+        aufbauerIst = Number(document.getElementById("AufbauerIst").value);
+        abfertigerIst = Number(document.getElementById("AbfertigerIst").value);
+
+        personalges = checkerIst + aufbauerIst + abfertigerIst;
+        maStunden = personalges * 7.5;
+        uldProdu = uldMenge / maStunden;
+        kgProdu = kgMenge / maStunden;
+
+        document.getElementById("ULDMengeProdu").value = Math.round((uldProdu + Number.EPSILON) * 100) / 100;
+        document.getElementById("ULDKGProdu").value = Math.round((kgProdu + Number.EPSILON) * 100) / 100;
+        document.getElementById("ULDMengeMAStunden").value = Math.round((maStunden + Number.EPSILON) * 100) / 100;
+        document.getElementById("ULDKGMAStunden").value = Math.round((maStunden + Number.EPSILON) * 100) / 100;
+
+
+        function keyup(e) {
+
+
+
+
+            uldMenge = Number(document.getElementById("ULDMengeMenge").value);
+            kgMenge = Number(document.getElementById("ULDKGMenge").value);
+            checkerIst = Number(document.getElementById("CheckerIst").value);
+            aufbauerIst = Number(document.getElementById("AufbauerIst").value);
+            abfertigerIst = Number(document.getElementById("AbfertigerIst").value);
+
+            personalges = checkerIst + aufbauerIst + abfertigerIst;
+            maStunden = personalges * 7.5;
+            uldProdu = uldMenge / maStunden;
+            kgProdu = kgMenge / maStunden;
+
+            document.getElementById("ULDMengeProdu").value = Math.round((uldProdu + Number.EPSILON) * 100) / 100;
+            document.getElementById("ULDKGProdu").value = Math.round((kgProdu + Number.EPSILON) * 100) / 100 ;
+            document.getElementById("ULDMengeMAStunden").value = Math.round((maStunden + Number.EPSILON) * 100) / 100 ;
+            document.getElementById("ULDKGMAStunden").value = Math.round((maStunden + Number.EPSILON) * 100) / 100 ;
+
+        }
+    }
+    );
+
+    </script>
+
+}
+

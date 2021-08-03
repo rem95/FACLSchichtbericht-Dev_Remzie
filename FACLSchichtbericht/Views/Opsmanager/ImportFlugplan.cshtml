@@ -1,0 +1,143 @@
+﻿<partial name="_navPartial" />
+
+@{
+
+    ViewData["Title"] = "Import Personalplan";
+}
+
+<div class="card">
+    <div class="card-header">
+        Dateiverwaltung
+    </div>
+
+
+    <p></p>
+    <p></p>
+    <p></p>
+    <div class="input-group" enctype="multipart/form-data">
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="files" name="files" multiple />
+            <label class="custom-file-label" for="inputGroupFile04">Datei und Uploaddatum auwählen und dann auf den Button Datei hochladen klicken</label>
+
+        </div>
+
+        <div class="input-group-append">
+            <input type="date" placeholder="Datum wählen" id="mydatum">
+        </div>
+
+
+
+    </div>
+    <p></p>
+    <p></p>
+    <div class="input-group-append">
+        <input type="button"
+               id="uploaddata" class="btn btn-outline-danger"
+               value="Datei hochladen" />
+    </div>
+</div>
+
+
+
+<p></p>
+<p></p>
+<center>
+    <div id="loading-indicator" class="spinner-grow" role="status" style="display:none">
+        <span class="sr-only">Loading...</span>
+    </div>
+</center>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+   @*<script type="text/javascript" src="~/js/mdb/mdb.min.js"></script>*@
+
+    <script type="text/javascript">
+
+        //uploader
+        $("#uploaddata").click(function (evt) {
+
+            var fileUpload = $("#files").get(0);
+            var files = fileUpload.files;
+            var data = new FormData();
+            var date = new Date(); // datum initialisieren
+
+            var day = date.getDate();
+            var month = date.getMonth() + 1;
+            var year = date.getFullYear();
+
+            if (month < 10) month = "0" + month;
+            if (day < 10) day = "0" + day;
+            var today = year + "-" + month + "-" + day;
+            var selected_date = today;
+
+            $(".progress-bar").attr("aria-valuenow", "0"); //progressbar
+
+            alert(selected_date);
+
+            data.append('files', files[0]);
+            data.append('jsonString', selected_date);
+
+
+            var count = 0;
+            $('#loading-indicator').show();
+            $.ajax({
+
+
+                type: "POST",
+                url: "/Opsmanager/ImportPersonalplan",
+                contentType: false,
+                processData: false,
+                data: data,
+                success: function (message) {
+                    $('#loading-indicator').hide();
+
+
+
+                    alert("Datei erfolgreich hochgeladen");
+
+                },
+                error: function () {
+
+                    $('#loading-indicator').hide();
+
+
+                    alert("Fehler!");
+                }
+            });
+        });
+
+        //Datepicker
+        var inputfielddate = document.getElementById("aktuellesdatum").getAttribute("myCustomAttribute");
+
+        //aktuelles Datum
+        var date = new Date();
+
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+
+        var today = year + "-" + month + "-" + day;
+
+        $(inputfielddate).attr("value", today);
+
+        //Datum formatieren
+        var date = new Date(document.getElementById("mydatum").val);
+        // Datum formatieren
+        getFormattedDate(date);
+        function getFormattedDate(date) {
+            var year = date.getFullYear();
+            var month = (1 + date.getMonth()).toString();
+            month = month.length > 1 ? month : '0' + month;
+            var day = date.getDate().toString();
+            day = day.length > 1 ? day : '0' + day;
+            return year + '/' + month + '/' + day;
+        }
+
+
+    </script>
+
+}

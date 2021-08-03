@@ -1,0 +1,214 @@
+﻿
+<partial name="_NavPartial" />
+
+@model FACLSchichtbericht.Models.ActiontrackerModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+
+<div>
+    <a asp-action="IndexActiontracker">Back to List</a>
+</div>
+<div class="card ">
+    <div class="card-header">
+        <h4 class="card-title">Actiontrackereintrag anlegen</h4>
+    </div>
+    <form asp-action="CreateActiontracker">
+        <div class="card-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div hidden="hidden" class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" value="@User.Identity.Name" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div hidden="hidden" class="form-group">
+                <label asp-for="istabgeschlossen" class="control-label"></label>
+                <input asp-for="istabgeschlossen" value="false" class="form-control" />
+                <span asp-validation-for="istabgeschlossen" class="text-danger"></span>
+            </div>
+            <div hidden="hidden" class="form-group">
+                <label asp-for="Overview_ID" class="control-label"></label>
+                <input asp-for="Overview_ID" class="form-control" />
+                <span asp-validation-for="Overview_ID" class="text-danger"></span>
+            </div>
+
+            <div hidden="hidden" class="form-group">
+                <label asp-for="erstelltam" class="control-label"></label>
+                <input asp-for="erstelltam" value="@DateTime.Now.ToLongDateString()" class="form-control" />
+                <span asp-validation-for="erstelltam" class="text-danger"></span>
+            </div>
+            <div hidden="hidden" class="form-group">
+                <label asp-for="erstelltvon" class="control-label"></label>
+                <input asp-for="erstelltvon" value="@User.Identity.Name" class="form-control" />
+                <span asp-validation-for="erstelltvon" class="text-danger"></span>
+            </div>
+            <div hidden="hidden" class="form-group">
+                <label asp-for="zuletztbearbeitetam" class="control-label"></label>
+                <input asp-for="zuletztbearbeitetam" value="@DateTime.Now.ToLongDateString()" class="form-control" />
+                <span asp-validation-for="zuletztbearbeitetam" class="text-danger"></span>
+            </div>
+            <div hidden="hidden" class="form-group">
+                <label asp-for="zuletztbearbeitetvon" class="control-label"></label>
+                <input asp-for="zuletztbearbeitetvon" value="@User.Identity.Name" class="form-control" />
+                <span asp-validation-for="zuletztbearbeitetvon" class="text-danger"></span>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-4">
+                    <label asp-for="Datum" class="control-label"></label>
+                    <input asp-for="Datum" class="form-control" />
+                    <span asp-validation-for="Datum" class="text-danger"></span>
+                </div>
+                <div class="form-group col-4">
+                    <label asp-for="Von" class="control-label"></label>
+                    <input asp-for="Von" type="time" class="form-control" />
+                    <span asp-validation-for="Von" class="text-danger"></span>
+                </div>
+                <div class="form-group col-4">
+                    <label asp-for="Bis" class="control-label"></label>
+                    <input asp-for="Bis" type="time" class="form-control" />
+                    <span asp-validation-for="Bis" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-12">
+                    <label asp-for="Beschreibung" class="control-label"></label>
+                    <textarea asp-for="Beschreibung" class="form-control"></textarea>
+                    <span asp-validation-for="Beschreibung" class="text-danger"></span>
+                </div>
+
+            </div>
+            <div class="form-row">
+                <div class="form-group col-3">
+                    <label asp-for="Action" class="control-label"></label>
+                    <select asp-for="Action" class="form-control"></select>
+                    <span asp-validation-for="Action" class="text-danger"></span>
+                </div>
+                <div class="form-group col-3">
+                    <label asp-for="Priorität" class="control-label"></label>
+                    <select asp-for="Priorität" class="form-control"></select>
+                    <span asp-validation-for="Priorität" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-12">
+                    <label asp-for="Maßnahme" class="control-label"></label>
+                    <textarea asp-for="Maßnahme" class="form-control"></textarea>
+                    <span asp-validation-for="Maßnahme" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-3">
+                    <label asp-for="Bereich" class="control-label"></label>
+                    <select asp-for="Bereich" class="form-control"></select>
+                    <span asp-validation-for="Bereich" class="text-danger"></span>
+                </div>
+            </div>
+            <h5 class="card-title">Referenz zu den Berichten</h5>
+
+            <div class="form-row">
+
+                <div class="form-group col-2">
+                    <label asp-for="BerichtBD420_ID" class="control-label">BerichtBD420 Referenznummer</label>
+                    <input asp-for="BerichtBD420_ID" class="form-control" />
+                    <span asp-validation-for="BerichtBD420_ID" class="text-danger"></span>
+                </div>
+                <div class="form-group col-2">
+                    <label asp-for="BerichtBD451_ID" class="control-label">BerichtBD451 Referenznummer</label>
+                    <input asp-for="BerichtBD451_ID" class="form-control" />
+                    <span asp-validation-for="BerichtBD451_ID" class="text-danger"></span>
+                </div>
+                <div class="form-group col-2">
+                    <label asp-for="BerichtBU320_ID" class="control-label">BerichtBU320 Referenznummer</label>
+                    <input asp-for="BerichtBU320_ID" class="form-control" />
+                    <span asp-validation-for="BerichtBU320_ID" class="text-danger"></span>
+                </div>
+                <div class="form-group col-2">
+                    <label asp-for="BerichtBU420_ID" class="control-label">BerichtBU420 Referenznummer</label>
+                    <input asp-for="BerichtBU420_ID" class="form-control" />
+                    <span asp-validation-for="BerichtBU420_ID" class="text-danger"></span>
+                </div>
+                <div class="form-group col-2">
+                    <label asp-for="BerichtTransport_ID" class="control-label">Bericht Transport Referenznummer</label>
+                    <input asp-for="BerichtTransport_ID" class="form-control" />
+                    <span asp-validation-for="BerichtTransport_ID" class="text-danger"></span>
+                </div>
+
+
+
+
+            </div>
+        <div class="card-footer">
+            <div class="form-group clearfix">
+                <input type="submit" value="Jetzt Anlegen!" class="btn btn-danger float-right" />
+            </div>
+        </div>
+            </div>
+    </form>
+</div>
+
+
+<div>
+    <a asp-action="IndexActiontracker">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Supervisor/GetDataDrpDwnBereich",
+                dataType: "json",
+                data: "{}",
+                success: function (data) {
+                    var s = '<option value="-1">Bitte auswählen</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        s += '<option value="' + data[i].name + '">' + data[i].name + '</option>';
+                    }
+                    $("#Bereich").html(s);
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Supervisor/GetDataDrpDwnAction",
+                dataType: "json",
+                data: "{}",
+                success: function (data) {
+                    var s = '<option value="-1">Bitte auswählen</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        s += '<option value="' + data[i].name + '">' + data[i].name + '</option>';
+                    }
+                    $("#Action").html(s);
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Supervisor/GetDataDrpDwnPrioritaet",
+                dataType: "json",
+                data: "{}",
+                success: function (data) {
+                    var s = '<option value="-1">Bitte auswählen</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        s += '<option value="' + data[i].name + '">' + data[i].name + '</option>';
+                    }
+                    $("#Priorit_t").html(s);
+                }
+            });
+        });
+
+    </script>
+
+
+}

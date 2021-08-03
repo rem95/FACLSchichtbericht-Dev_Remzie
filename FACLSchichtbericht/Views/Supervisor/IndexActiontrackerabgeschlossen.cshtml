@@ -1,0 +1,118 @@
+﻿
+<partial name="_NavPartial" />
+
+@model IEnumerable<FACLSchichtbericht.Models.ActiontrackerModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Abgeschlossene Actiontrackereinträge</h1>
+
+<p>
+    <a asp-action="IndexActiontracker">offene Actiontracker einträge</a>
+</p>
+<div class="card">
+    <div class="card-header"></div>
+    <div class="card-body">
+        <table class="table table-sm table-striped">
+            <thead>
+                <tr>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Datum)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Von)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Bis)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Action)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Priorität)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Bereich)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Beschreibung)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Maßnahme)
+                    </th>
+
+
+                    <th>
+                        Gehört zu
+                    </th>
+                    <th>Aktion</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Datum)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Von)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Bis)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Action)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Priorität)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Bereich)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Beschreibung)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Maßnahme)
+                        </td>
+
+
+                        <td>
+                            @if (item.BerichtBD420_ID != null)
+                            {
+                                @Html.Raw("BerichtBD420: ")
+                                @Html.DisplayFor(modelItem => item.BerichtBD420_ID)
+                            }
+                            else if (item.BerichtBD451_ID != null)
+                            {
+                                @Html.Raw("BerichtBD451: ")
+
+                                @Html.DisplayFor(modelItem => item.BerichtBD451_ID)
+                            }
+                            else if (item.BerichtBU320_ID != null)
+                            {
+                                @Html.Raw("BerichtBU320: ")
+
+                                @Html.DisplayFor(modelItem => item.BerichtBU320_ID)
+                            }
+                            else
+                            {
+                                @Html.Raw("BerichtBU420: ")
+                                @Html.DisplayFor(modelItem => item.BerichtBU420_ID)
+                            }
+                        </td>
+                        <td>
+                            <a asp-action="DetailsActiontracker" asp-route-id="@item.ID">Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer"></div>
+</div>

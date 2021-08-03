@@ -1,0 +1,285 @@
+﻿@model FACLSchichtbericht.Models.BerichtTransportModel
+
+@{ ViewData["Title"] = "Details"; }
+<partial name="_NavPartial" />
+<h1>Details</h1>
+<a asp-action="IndexBerichtTransport">Back to List</a>
+
+<div>
+    <h4>Bericht Transport</h4>
+    <hr />
+    <dl class="row">
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Leihscanner)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Leihscanner)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Leihstapler)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Leihstapler)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CDSStandard)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CDSStandard)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CDSDgr)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CDSDgr)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Arbeitsunfall)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Arbeitsunfall)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.HRLSoll)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.HRLSoll)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.HRLIst)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.HRLIst)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.HRLKrank)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.HRLKrank)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.HRLZusatzleistung)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.HRLZusatzleistung)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DIRSoll)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DIRSoll)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DIRIst)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DIRIst)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DIRKrank)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DIRKrank)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DIRZusatzleistung)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DIRZusatzleistung)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PerkoSoll)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PerkoSoll)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PerkoIst)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PerkoIst)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PerkoKrank)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PerkoKrank)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PerkoZusatzleistung)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PerkoZusatzleistung)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.HRLMenge)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.HRLMenge)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.HRLStunden)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.HRLStunden)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.HRLProdu)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.HRLProdu)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DIRMenge)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DIRMenge)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DIRStunden)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DIRStunden)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DIRProdu)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DIRProdu)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.QuerMenge)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.QuerMenge)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.QuerStunden)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.QuerStunden)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.QuerProdu)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.QuerProdu)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PerkoMenge)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PerkoMenge)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PerkoStunden)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PerkoStunden)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PerkoProdu)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PerkoProdu)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.zuletztbearbeitetvon)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.zuletztbearbeitetvon)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.zuletztbearbeitetam)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.zuletztbearbeitetam)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.istabgeschlossen)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.istabgeschlossen)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.istfreigegeben)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.istfreigegeben)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.abgeschlossenvon)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.abgeschlossenvon)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.freigegebenvon)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.freigegebenvon)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.schichtdatum)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.schichtdatum)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.schichtbeginn)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.schichtbeginn)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.schichtende)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.schichtende)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.schichttyp)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.schichttyp)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.schichtbeurteilung)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.schichtbeurteilung)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.erstelltam)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.erstelltam)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.erstelltvon)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.erstelltvon)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.abgeschlossenam)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.abgeschlossenam)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.freigegebenam)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.freigegebenam)
+        </dd>
+    </dl>
+</div>
+<div>
+        <a asp-action="EditBerichtTransport" asp-route-id="@Model.ID">Edit</a> |
+        <a asp-action="IndexBerichtTransport">Back to List</a>
+    </div>
+

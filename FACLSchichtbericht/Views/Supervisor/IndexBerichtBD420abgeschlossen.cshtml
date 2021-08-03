@@ -1,0 +1,69 @@
+﻿
+@model IEnumerable<FACLSchichtbericht.Models.BerichtBD420Model>
+
+@{
+    ViewData["Title"] = "Index BerichtBD420";
+}
+<partial name="_NavPartial" />
+
+<h1>abgeschlossene Berichte BD 420</h1>
+
+<p>
+    <a asp-action="IndexBerichtBD420">Zurück</a>
+</p>
+<div class="card">
+    <div class="card-header"></div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Referenznummer
+                    </th>
+
+                    <th>
+                        Datum
+                    </th>
+
+                    <th>
+                        Schicht
+                    </th>
+                    <th>
+                        Schichtbeurteilung
+                    </th>
+
+                    <th>
+                        Aktion
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ID)
+                        </td>
+
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.schichtdatum)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.schichttyp)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.schichtbeurteilung)
+                        </td>
+
+                        <td>
+                            <a asp-action="DetailsBerichtBD420" asp-route-id="@item.ID">Details</a> |
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer"></div>
+</div>

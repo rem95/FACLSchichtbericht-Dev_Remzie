@@ -1,0 +1,103 @@
+﻿<partial name="_NavPartial" />
+
+@model IEnumerable<FACLSchichtbericht.Models.PersonalplanModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<h1>Abgeschlossene Personalplaneinträge</h1>
+
+<p>
+    <a asp-action="IndexPersonalplan">Zurück zu offenen Personaplaneinträge</a>
+</p>
+
+<div class="card">
+    <div class="card-header"></div>
+    <div class="card-body">
+        <table id="personalplan" class="table table-striped" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>PK</th>
+                    <th>Name</th>
+                    <th>Vorname</th>
+                    <th>Bereich</th>
+                    <th>Schicht</th>
+                    <th>Datum</th>
+                    <th>Jobtitel</th>
+                    <th>Einsatz als</th>
+                    <th>anwesend</th>
+                    <th>Bemerkung</th>
+                    <th>Aktion</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>PK</th>
+                    <th>Name</th>
+                    <th>Vorname</th>
+                    <th>Bereich</th>
+                    <th>Schicht</th>
+                    <th>Datum</th>
+                    <th>Jobtitel</th>
+                    <th>Einsatz als</th>
+                    <th>anwesend</th>
+                    <th>Bemerkung</th>
+                    <th>Aktion</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div class="card-footer"></div>
+</div>
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+
+
+
+        $(document).ready(function () {
+          $('#personalplan').DataTable({
+              "order": [[5, "asc"]],
+              stateSave: true,
+            "ajax": {
+                "url": "/Supervisor/GetDataPersonalplanAbgeschlossen",
+                "type": "GET",
+                "datatype" : "json"
+            },
+            "columns": [
+                { "data": "pk" },
+                { "data": "nachname" },
+                { "data": "vorname" },
+                { "data": "bereich" },
+                { "data": "schichttyp" },
+                { "data": "datumgeplant" },
+                { "data": "jobtitel" },
+                { "data": "einsatzals" },
+                { "data": "anwesend" },
+                { "data": "bemerkung" },
+                {
+                  "data": "id",
+                    "render": function (data, type, row, meta) {
+                        if (type === 'display') {
+                            data = '<a href="@Url.Content("~/Supervisor/DetailsPersonalplan/")' + data + '">Details</a>';
+                        }
+
+                        return data;
+                    }
+                }
+            ]
+
+        });
+    });
+
+    </script>
+
+}

@@ -1,0 +1,76 @@
+﻿<partial name="_navPartial" />
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Freigegebene Berichte</h4>
+
+        </div>
+        <div class="card-body">
+            <table id="personalplan" class="table" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Referenznummer</th>
+                        <th>Datum</th>
+                        <th>Schicht</th>
+                        <th>Beurteilung</th>
+                        <th>Aktion</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Referenznummer</th>
+                        <th>Datum</th>
+                        <th>Schicht</th>
+                        <th>Beurteilung</th>
+                        <th>Aktion</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="card-footer">
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+$(document).ready(function () {
+        $('#personalplan').DataTable({
+            "ajax": {
+                "url": "/Dutymanager/GetDataFreigegebeneOverview",
+                "type": "GET",
+                "datatype" : "json"
+            },
+            "columns": [
+                { "data": "id" },
+                { "data": "berichtdatum" },
+                { "data": "schichttyp" },
+                { "data": "schichtbeurteilung" },
+                {
+                  "data": "id",
+                    "render": function (data, type, row, meta) {
+                        if (type === 'display') {
+                            data = '<a href="@Url.Content("~/Supervisor/EditOverview/")' + data + '">Edit</a> | <a href="@Url.Content("~/Supervisor/DetailsOverview/")' + data + '">Details</a>';
+                        }
+
+                        return data;
+                    }
+                }
+            ],
+
+            "columnDefs": [{
+                targets: 1, render: function (data) {
+                    return moment(data).format('DD.MM.YYYY');
+                }
+            }]
+        });
+    });
+
+    </script>
+
+}

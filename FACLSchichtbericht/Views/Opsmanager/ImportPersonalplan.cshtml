@@ -1,0 +1,110 @@
+﻿<partial name="_navPartial" />
+
+@{
+
+    ViewData["Title"] = "Import Personalplan";
+}
+
+<div class="card">
+    <div class="card-header">
+        Dateiverwaltung
+    </div>
+
+
+    <p></p>
+    <p></p>
+    <p></p>
+    <div class=" form-group input-group" enctype="multipart/form-data">
+            <label class="form-control " for="files">Datei und Uploaddatum auswählen.</label>
+
+            <input type="file" class="form-control " id="files" name="files" multiple />
+
+        <div class="input-group-append">
+            <input type="date" placeholder="Datum wählen" id="mydatum">
+        </div>
+    </div>
+    <p></p>
+    <p></p>
+    <div class="input-group-append">
+        <input type="button"
+               id="uploaddata" class="btn btn-outline-danger"
+               value="Datei hochladen" />
+    </div>
+</div>
+
+
+
+<p></p>
+<p></p>
+<center>
+    <div id="loading-indicator" class="spinner-grow" role="status" style="display:none">
+        <span class="sr-only">Loading...</span>
+    </div>
+</center>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+ 
+
+    <script type="text/javascript">
+
+        //uploader
+        $("#uploaddata").click(function (evt) {
+
+            var fileUpload = $("#files").get(0);
+            var files = fileUpload.files;
+            var data = new FormData();
+            var date = new Date(); // datum initialisieren
+
+            var day = date.getDate();
+            var month = date.getMonth() + 1;
+            var year = date.getFullYear();
+
+            if (month < 10) month = "0" + month;
+            if (day < 10) day = "0" + day;
+            var today = year + "-" + month + "-" + day;
+            var selected_date = today;
+
+            $(".progress-bar").attr("aria-valuenow", "0"); //progressbar
+
+            alert(selected_date);
+
+            data.append('files', files[0]);
+            data.append('jsonString', selected_date);
+
+
+            var count = 0;
+            $('#loading-indicator').show();
+            $.ajax({
+
+
+                type: "POST",
+                url: "/Opsmanager/ImportPersonalplan",
+                contentType: false,
+                processData: false,
+                data: data,
+                success: function (message) {
+                    $('#loading-indicator').hide();
+
+
+
+                    alert("Datei erfolgreich hochgeladen");
+
+                },
+                error: function () {
+
+                    $('#loading-indicator').hide();
+
+
+                    alert(Error.message);
+                }
+            });
+        });
+
+        
+
+
+    </script>
+
+}

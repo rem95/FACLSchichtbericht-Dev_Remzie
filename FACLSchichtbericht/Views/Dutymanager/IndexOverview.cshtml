@@ -1,0 +1,65 @@
+﻿@model IEnumerable<FACLSchichtbericht.Models.OverviewModel>
+
+<partial name="_navPartial" />
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Offenene Berichte</h4>
+        </div>
+        <div class="card-body">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>
+                            Referenznummer
+                        </th>
+
+                        <th>
+                            Datum
+                        </th>
+
+                        <th>
+                            Schicht
+                        </th>
+                        <th>
+                            Beurteilung
+                        </th>
+
+                        <th>
+                            Aktion
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ID)
+                            </td>
+
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.berichtdatum)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.schichttyp)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.schichtbeurteilung)
+                            </td>
+
+                            <td>
+                                <a asp-action="EditOverview" asp-route-id="@item.ID">Edit</a> |
+                                <a asp-action="DetailsOverview" asp-route-id="@item.ID">Details</a> |
+                                <a asp-action="DeleteOverview" asp-route-id="@item.ID">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer"></div>
+    </div>
+</div>

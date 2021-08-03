@@ -1,0 +1,188 @@
+﻿<partial name="_NavPartial" />
+
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+@{string appPath = $"{Context.Request.Scheme}://{Context.Request.Host.Value}{Url.Content("~/")}";}
+
+
+<h1>Offene Personalplaneinträge</h1>
+
+<p>
+    <a asp-action="CreatePersonalplan">Neuen Personalplaneintrag anlegen >></a> || <a asp-action="Indexpersonalplanabgeschlossen"> abgeschlossene Personalplaneinträge</a>
+</p>
+
+
+
+<div class="card">
+    <div class="card-header"></div>
+    <div class="card-body">
+        <table id="tblpersonalplan" class="display" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>PK</th>
+                    <th>Name </th>
+                    <th>Bereich</th>
+                    <th>Schicht</th>
+                    <th>Datum</th>
+                    <th>Jobtitel</th>
+                    <th>Einsatz als</th>
+                    <th>anwesend</th>
+                    <th>Bemerkung</th>
+                    <th>Aktion</th>
+                </tr>
+            </thead>
+
+        </table>
+    </div>
+    <div class="card-footer"></div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+
+
+
+        var editor; // use a global for the submit and return data rendering in the examples
+        var DrpDwnEinsatzals = [];
+
+        editor = new $.fn.dataTable.Editor({
+            ajax: { url: "/Supervisor/EditorPersonalplan"  , type: "POST"},
+            table: "#tblpersonalplan",
+
+            fields: [{
+                label: "Bereich:",
+                name: "Bereich"
+            }, {
+                    label: "Schicht:",
+                name: "schichttyp"
+
+            }, {
+                label: "datumgeplant:",
+                name: "datumgeplant",
+                type: "datetime"
+            }, {
+                    label: "Einsatzals:",
+                    name: "Einsatzals",
+                    type: "select"
+            //        option: DrpDwnEinsatzals
+            }, {
+                label: "anwesend:",
+                name: "anwesend"
+            }, {
+                label: "Bemerkung:",
+                    name: "Bemerkung"
+            }]
+        });
+
+        $('#tblpersonalplan').on('click', 'tbody td:not(:first-child)', function (e) {
+            // Focus on the input in the cell that was clicked when Editor opens
+            editor.one('open', () => {
+                $('input', this).focus();
+            });
+
+            editor.inline(table.cells(this.parentNode, '*').nodes());
+
+            $(document).ready(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "/Supervisor/GetDataDrpDwnEinsatzals",
+                    data: {},
+                    success: function (data) {
+                        var s = '<option value="-1">Bitte Auswählen</option>';
+                        for (var i = 0; i < data.length; i++) {
+                            s += '<option value="' + data[i].name + '">' + data[i].name + '</option>';
+                        }
+                        $("#DTE_Field_Einsatzals").html(s);
+                    }
+                });
+            });
+
+
+        });
+
+
+       var table = $('#tblpersonalplan').DataTable({
+           dom: "Bfrtip",
+           lengthMenu: [
+               [10, 25, 50, -1],
+               ['10 rows', '25 rows', '50 rows', 'Show all']
+           ],
+           stateSave: true,
+           ajax: "/Supervisor/EditorPersonalplan",
+
+            columns: [
+                {
+                    data: null,
+                    defaultContent: '',
+                    className: 'select-checkbox',
+                    orderable: false
+                },
+                { data: "PK"},
+                {
+                    data: null, render: function (data, type, row) {
+                        // Combine the first and last names into a single table field
+                        return data.Vorname + ' ' + data.Nachname;
+                    }
+                },
+                { data: "Bereich"},
+                { data: "schichttyp" },
+                { data: "datumgeplant" },
+                { data: "Jobtitel" },
+                { data: "Einsatzals"},
+                { data: "anwesend" },
+                { data: "Bemerkung" },
+                {
+                    data: "DT_RowId",
+                    render: function (data, type, row, meta) {
+                        if (type === 'display') {
+                            data = '<a href="@Url.Content("~/Supervisor/EditPersonalplan/")' + data.substring(4) + '">Edit</a> | <a href="@Url.Content("~/Supervisor/DetailsPersonalplan/")' + data.substring(4) + '">Details</a> | <a href="@Url.Content("~/Supervisor/DeletePersonalplan/")' + data.substring(4) +'">Delete</a>';
+                        }
+                        return data;
+                    }
+                }
+            ],
+            select: {
+                style: 'os',
+                selector: 'td:first-child'
+            },
+            buttons: [
+                { extend: "create", editor: editor },
+                { extend: "edit", editor: editor },
+                { extend: "remove", editor: editor },
+                'pageLength'
+            ]
+        });
+
+         
+
+    });
+
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "/Supervisor/GetDataDrpDwnBereich",
+            dataType: "json",
+            data: "{}",
+            success: function (data) {
+                var s = '<option value="">bereich Auswählen</option>';
+                for (var i = 0; i < data.length; i++) {
+                    s += '<option value="' + data[i].name + '">' + data[i].name + '</option>';
+                }
+                $("#DTE_Field_Bereich").html(s);
+            }
+        });
+    });
+</script>
+
+}

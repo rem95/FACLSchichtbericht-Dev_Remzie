@@ -1,0 +1,72 @@
+﻿
+@model IEnumerable<FACLSchichtbericht.Models.BerichtBU420Model>
+
+@{
+    ViewData["Title"] = "Index BerichtBU420";
+}
+<partial name="_NavPartial" />
+
+<h1>Offene Berichte BU 420</h1>
+
+<p>
+    <a href="/Supervisor/CreateBerichtBU420">Neuen Bericht hier anlegen >></a> || <a asp-action="IndexBerichtBU420abgeschlossen"> abgeschlossene Berichte</a>
+</p>
+
+<div class="card">
+    <div class="card-header"></div>
+    <div class="card-body">
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th>
+                        Referenznummer
+                    </th>
+
+                    <th>
+                        Datum
+                    </th>
+
+                    <th>
+                        Schicht
+                    </th>
+                    <th>
+                        Schichtbeurteilung
+                    </th>
+
+                    <th>
+                        Aktion
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ID)
+                        </td>
+
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.schichtdatum)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.schichttyp)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.schichtbeurteilung)
+                        </td>
+
+                        <td>
+                            <a asp-action="EditBerichtBU420" asp-route-id="@item.ID">Edit</a> |
+                            <a asp-action="DetailsBerichtBU420" asp-route-id="@item.ID">Details</a> |
+                            <a asp-action="DeleteBerichtBU420" asp-route-id="@item.ID">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer"></div>
+</div>

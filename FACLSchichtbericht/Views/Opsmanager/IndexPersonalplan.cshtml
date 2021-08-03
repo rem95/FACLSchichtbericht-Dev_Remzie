@@ -1,0 +1,172 @@
+﻿@model IEnumerable<FACLSchichtbericht.Models.PersonalplanModel>
+
+<partial name="_navPartial" />
+
+<h1>Offene Personalplaneinträge</h1>
+
+<p>
+    <a asp-action="CreatePersonalplan">Neuen Personalplaneintrag anlegen >></a> || <a asp-action="Indexpersonalplanabgeschlossen"> abgeschlossene Personalplaneinträge</a>  || <a asp-action="ImportPersonalplan"> Personaplan importieren</a>
+</p>
+
+
+<table class="table table-sm">
+    <thead>
+        <tr>
+            <th>
+
+                @Html.DisplayNameFor(model => model.PK)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nachname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vorname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gewerk)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bereich)
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Jobtitel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Einsatzals)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AG)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Brandschutzhelfer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ersthelfer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.anwesend)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.mehrarbeitgenehmight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bemerkung)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.BerichtBD420_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BerichtBD451_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BerichtBU320_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BerichtBU420_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.datumgeplant)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.schichttyp)
+            </th>
+            <th>Berichtszugehörigkeit</th>
+            <th>
+                Aktion
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.PK)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nachname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vorname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gewerk)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bereich)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Jobtitel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Einsatzals)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AG)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brandschutzhelfer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ersthelfer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.anwesend)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.mehrarbeitgenehmight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bemerkung)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.BerichtBD420_ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BerichtBD451_ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BerichtBU320_ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BerichtBU420_ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.datumgeplant)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.schichttyp)
+                </td>
+                <td>
+                    @if (item.BerichtBD420_ID != null)
+                    {
+                        @Html.DisplayFor(modelItem => item.BerichtBD420_ID)
+                    }
+                    else if (item.BerichtBD451_ID != null)
+                    {
+                        @Html.DisplayFor(modelItem => item.BerichtBD451_ID)
+                    }
+                    else if (item.BerichtBU320_ID != null)
+                    {
+                        @Html.DisplayFor(modelItem => item.BerichtBU320_ID)
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.BerichtBU420_ID)
+                    }
+                </td>
+                <td>
+                    <a asp-action="EditPersonalplan" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-action="DetailsPersonalplan" asp-route-id="@item.ID">Details</a> |
+                    <a asp-action="DeletePersonalplan" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

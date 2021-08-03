@@ -1,0 +1,36 @@
+﻿@model FACLSchichtbericht.Models.DropdownoptionsModel
+
+@{
+    ViewData["Title"] = "DetailsDropdownoption";
+}
+<partial name="_navPartial" />
+<h1>DetailsDropdownoption</h1>
+
+<div>
+    <h4>DropdownoptionsModel</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.value)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.value)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Selectbezeichnung)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Selectbezeichnung)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Optionbezeichnung)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Optionbezeichnung)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="EditDropdownoption" asp-route-id="@Model.ID">Edit</a> |
+    <a asp-action="IndexDropdownoption">Back to List</a>
+</div>

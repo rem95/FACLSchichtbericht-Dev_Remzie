@@ -1,0 +1,56 @@
+﻿@using System.Security.Principal
+ 
+   <nav class="navbar navbar-expand-md  navbar-dark bg-danger "  >
+        <a class="navbar-brand" asp-area="" asp-controller="Supervisor" asp-action="Index">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+
+            <ul class="navbar-nav  mr-auto">
+                <li class="nav-item ">
+                    <a class="nav-link active " asp-area="" asp-controller="Supervisor" asp-action="IndexBerichtBD420">Bereich BD420</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link active" asp-area="" asp-controller="Supervisor" asp-action="IndexBerichtBD451">Bereich BD451</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link active" asp-area="" asp-controller="Supervisor" asp-action="IndexBerichtBU320">Bereich BU320</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link active" asp-area="" asp-controller="Supervisor" asp-action="IndexBerichtBU420">Bereich BU420</a>
+                </li>
+                <li>
+                    <a class="nav-link active " asp-area="" asp-controller="Supervisor" asp-action="IndexBerichtBCLPosition">BCL</a>
+                </li>
+                <li>
+                    <a class="nav-link active " asp-area="" asp-controller="Supervisor" asp-action="IndexBerichtTransport">Transport</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link active " asp-area="" asp-controller="Supervisor" asp-action="IndexActiontracker">Actiontracker</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active " asp-area="" asp-controller="Supervisor" asp-action="IndexPersonalplan">Personalplan</a>
+                </li>
+
+
+
+
+
+            </ul>
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                    <span class="navbar-text text-white mr-sm-2"> @User.Identity.Name</span>
+                    <a class="nav-link text-white btn btn-outline-dark my-2 my-sm-0" asp-area="AzureAD" asp-controller="Account" asp-action="SignOut">Sign out</a>
+            }
+            else
+            {
+                    <a class="nav-link text-dark" asp-area="AzureAD" asp-controller="Account" asp-action="SignIn">Sign in</a>
+            }
+        </div>
+    </nav>
+<hr />

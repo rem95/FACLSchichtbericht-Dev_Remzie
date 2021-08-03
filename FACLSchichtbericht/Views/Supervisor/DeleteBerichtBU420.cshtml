@@ -1,0 +1,22 @@
+﻿@model FACLSchichtbericht.Models.BerichtBU420Model
+
+@{
+    ViewData["Title"] = "Delete";
+}
+<partial name="_NavPartial" />
+<h1>Löschen</h1>
+
+<div>
+    <h4>BerichtBU420</h4>
+    <hr />
+    <dl class="row">
+
+        
+    </dl>
+
+    <form asp-action="DeleteBerichtBU420">
+        <input type="hidden" asp-for="ID" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="IndexBerichtBU420">Back to List</a>
+    </form>
+</div>

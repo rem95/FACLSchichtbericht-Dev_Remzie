@@ -1,0 +1,678 @@
+﻿@model FACLSchichtbericht.Models.OverviewModel
+
+<partial name="_navPartial" />
+
+<div class="container">
+    <div class="row">
+        <div class="container">
+            <div class="card">
+                <form asp-action="EditOverview">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs" id="list" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Overview</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#actiontracker" role="tab" aria-controls="actiontracker" aria-selected="false">Actiontracker</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#flugplan" role="tab" aria-controls="flugplan" aria-selected="false">Flugplan</a>
+                            </li>
+                            <li class="nav-item " >
+                                <a class="nav-link" href="#anhang" role="tab" aria-controls="anhang" aria-selected="false">Anhang</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="card-body">
+
+                        <h4 class="card-title">Overview</h4>
+                        <h6 class="card-title text-muted">Referenznummer: @Model.ID vom @(Model.berichtdatum.Value.ToLongDateString() ) ,  @(Model.schichttyp + "schicht").  </h6>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="ID" />
+                        <div class="form-row align-items-center">
+                            <div class="form-group col-3">
+                                <label asp-for="HDO" class="control-label"></label>
+                                <select asp-for="HDO" class="form-control"></select>
+                                <span asp-validation-for="HDO" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-3">
+                                <label asp-for="SchichtleiterPT" class="control-label"></label>
+                                <select asp-for="SchichtleiterPT" class="form-control"></select>
+                                <span asp-validation-for="SchichtleiterPT" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-3">
+                                <label asp-for="SchichtleiterLF" class="control-label"></label>
+                                <select asp-for="SchichtleiterLF" class="form-control"></select>
+                                <span asp-validation-for="SchichtleiterLF" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-3">
+                                <label asp-for="schichtbeurteilung" class="control-label"></label>
+                                <Select asp-for="schichtbeurteilung" class="form-control">
+                                    <option value="Mittel">Mittel</option>
+                                    <option value="Gut">Gut</option>
+                                    <option value="Schlecht">Schlecht</option>
+
+                                </Select>
+                                <span asp-validation-for="schichtbeurteilung"></span>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="tab-content ">
+                            <div class="tab-pane active" id="overview" role="tabpanel">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <h3 class="card-title text-danger ">Personal</h3>
+
+                                    </div>
+                                    <div class="col-8">
+                                        <h3 class="text-danger card-title ">Produktivität</h3>
+
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-4 ">
+                                        <table id="tblpersonal" class=" table table-sm  table-condensed table-responsive ">
+                                            <thead>
+                                                <tr>
+                                                    <th>Position</th>
+                                                    <th>Soll</th>
+                                                    <th>Ist</th>
+                                                    <th>Krank</th>
+                                                    <th>Zusatzleistungen</th>
+                                                </tr>
+
+                                            </thead>
+                                            <tr>
+                                                <td>Duty Manager</td>
+                                                <td>@Model.DutymanagerSoll</td>
+                                                <td>@Model.DutymanagerIst</td>
+                                                <td>@Model.DutymanagerKrank</td>
+                                                <td>@Model.DutymanagerZusatz</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="5"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>BD Supervisor</td>
+                                                <td>@Model.BDSupervisorSoll</td>
+                                                <td>@Model.BDSupervisorIst</td>
+                                                <td>@Model.BDSupervisorKrank</td>
+
+                                                <td>@Model.BDSupervisorZusatz</td>
+                                            </tr>
+                                            <tr>
+                                                <td>BD Checker</td>
+                                                <td>@Model.BDCheckerSoll</td>
+                                                <td>@Model.BDCheckerIst</td>
+                                                <td>@Model.BDCheckerKrank</td>
+
+                                                <td>@Model.BDCheckerZusatz</td>
+                                            </tr>
+                                            <tr>
+                                                <td>BD Aufbauer</td>
+                                                <td>@Model.BDAufbauerSoll</td>
+                                                <td>@Model.BDAufbauerIst</td>
+                                                <td>@Model.BDAufbauerKrank</td>
+                                                <td>@Model.BDAufbauerZusatz</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>BD Abfertiger</td>
+                                                <td>@Model.BDAbfertigerSoll</td>
+                                                <td>@Model.BDAbfertigerIst</td>
+                                                <td>@Model.BDAbfertigerKrank</td>
+                                                <td>@Model.BDAbfertigerZusatz</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="5"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>BU Supervisor</td>
+                                                <td>@Model.BUSupervisorSoll</td>
+                                                <td>@Model.BUSupervisorIst</td>
+                                                <td>@Model.BUSupervisorKrank</td>
+
+                                                <td>@Model.BUSupervisorZusatz</td>
+                                            </tr>
+                                            <tr>
+                                                <td>BU Teamlead</td>
+                                                <td>@Model.BUTeamleadSoll</td>
+                                                <td>@Model.BUTeamleadIst</td>
+                                                <td>@Model.BUTeamleadKrank</td>
+
+                                                <td>@Model.BUTeamleadZusatz</td>
+                                            </tr>
+                                            <tr>
+                                                <td>BU Palettierer</td>
+                                                <td>@Model.BUPalettiererSoll</td>
+                                                <td>@Model.BUPalettiererIst</td>
+                                                <td>@Model.BUPalettiererKrank</td>
+
+                                                <td>@Model.BUPalettiererZusatz</td>
+                                            </tr>
+                                            <tr>
+                                                <td>BU Abfertiger</td>
+                                                <td>@Model.BUAbfertigerSoll</td>
+                                                <td>@Model.BUAbfertigerIst</td>
+                                                <td>@Model.BUAbfertigerKrank</td>
+
+                                                <td>@Model.BUAbfertigerZusatz</td>
+                                            </tr>
+                                        </table>
+                                        <h3 class="text-danger card-title"></h3>
+
+                                    </div>
+
+                                    <div class="col-4">
+                                        <table id="tblProdu1" class="table table-sm table-condensed ">
+                                            <thead>
+                                                <tr>
+                                                    <th>Bereich</th>
+                                                    <th>Menge</th>
+                                                    <th>Stunden</th>
+                                                    <th>Produktivität</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tr>
+                                                <td colspan="4"><h6 class="text-danger card-title">BD420</h6></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    ULD Menge
+                                                </td>
+                                                <td>@Model.BD420ULDMengeMenge</td>
+                                                <td>@Model.BD420ULDMengeStunden</td>
+                                                <td>@Model.BD420ULDMengeProdu</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    ULD KG
+                                                </td>
+                                                <td>@Model.BD420ULDKGMenge</td>
+                                                <td>@Model.BD420ULDKGStunden</td>
+                                                <td>@Model.BD420ULDKGProdu</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    BULK Menge
+                                                </td>
+                                                <td>@Model.BD420BULKMengeMenge</td>
+                                                <td>@Model.BD420BulkMengeStunden</td>
+                                                <td>@Model.BD420BulkMengeProdu</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4"></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4"><h6 class="text-danger card-title">BD451</h6></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    ULD Menge
+                                                </td>
+                                                <td>@Model.BD451ULDMengeMenge</td>
+                                                <td>@Model.BD451ULDMengeStunden</td>
+                                                <td>@Model.BD451ULDMengeProdu</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    ULD KG
+                                                </td>
+                                                <td>@Model.BD451ULDKGMenge</td>
+                                                <td>@Model.BD451ULDKGStunden</td>
+                                                <td>@Model.BD451ULDKGProdu</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4"></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4"><h6 class="text-danger card-title">BCL BD437</h6></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    ULD Menge
+                                                </td>
+                                                <td>@Model.BD437ULDMengeMenge</td>
+                                                <td>@Model.BD437ULDMengeStunden</td>
+                                                <td>@Model.BD437ULDMengeProdu</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    ULD KG
+                                                </td>
+                                                <td>@Model.BD437ULDKGMenge</td>
+                                                <td>@Model.BD437ULDKGStunden</td>
+                                                <td>@Model.BD437ULDKGProdu</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4"></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4"><h6 class="text-danger card-title">Transport</h6></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    HRL Fahrten
+                                                </td>
+                                                <td>@Model.TransportHRLMenge</td>
+                                                <td>@Model.TransportHRLStunden</td>
+                                                <td>@Model.TransportHRLProdu</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    DIR Fahrten
+                                                </td>
+                                                <td>@Model.TransportDIRMenge</td>
+                                                <td>@Model.TransportDIRStunden</td>
+                                                <td>@Model.TransportDIRProdu</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Quer Fahrten
+                                                </td>
+                                                <td>@Model.TransportQuerMenge</td>
+                                                <td>@Model.TransportQuerStunden</td>
+                                                <td>@Model.TransportQuerProdu</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Perko Fahrten
+                                                </td>
+                                                <td>@Model.TransportPerkoMenge</td>
+                                                <td>@Model.TransportPerkoStunden</td>
+                                                <td>@Model.TransportPerkoProdu</td>
+                                            </tr>
+
+
+
+                                        </table>
+
+
+                                    </div>
+                                    <div class="col-4">
+                                        <table id="tblProdu2" class="table table-sm table-condensed ">
+                                            <thead>
+                                                <tr>
+                                                    <th>Bereich</th>
+                                                    <th>Menge</th>
+                                                    <th>Stunden</th>
+                                                    <th>Produktivität</th>
+                                                </tr>
+                                            </thead>
+                                            <tr>
+                                                <td colspan="4"><h6 class="text-danger card-title">BU320</h6></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    ULD Menge
+                                                </td>
+                                                <td>@Model.BU320AKHMengeMenge</td>
+                                                <td>@Model.BU320AKHMengeStunden</td>
+                                                <td>@Model.BU320AKHMengeProdu</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    ULD KG
+                                                </td>
+                                                <td>@Model.BU320AKHKGMenge</td>
+                                                <td>@Model.BU320AKHKGStunden</td>
+                                                <td>@Model.BU320AKHKGProdu</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    BULK Menge
+                                                </td>
+                                                <td>@Model.BU320BellyMengeMenge</td>
+                                                <td>@Model.BU320BellyMengeStunden</td>
+                                                <td>@Model.BU320BellyMengeProdu</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4"></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4"><h6 class="text-danger card-title">BU420</h6></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    ULD Menge
+                                                </td>
+                                                <td>@Model.BU420ULDMengeMenge</td>
+                                                <td>@Model.BU420ULDMengeStunden</td>
+                                                <td>@Model.BU420ULDMengeProdu</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    ULD KG
+                                                </td>
+                                                <td>@Model.BU420ULDKGMenge</td>
+                                                <td>@Model.BU420ULDKGStunden</td>
+                                                <td>@Model.BU420ULDKGProdu</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4"></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4"><h6 class="text-danger card-title">BCL BU420</h6></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    ULD Menge
+                                                </td>
+                                                <td>@Model.BU420ULDMengeMenge</td>
+                                                <td>@Model.BU420ULDMengeStunden</td>
+                                                <td>@Model.BU420ULDMengeProdu</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    ULD KG
+                                                </td>
+                                                <td>@Model.BU420ULDKGMenge</td>
+                                                <td>@Model.BU420ULDKGStunden</td>
+                                                <td>@Model.BU420ULDKGProdu</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4"></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4"><h6 class="text-danger card-title">BCL BU437</h6></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    ULD Menge
+                                                </td>
+                                                <td>@Model.BU437ULDMengeMenge</td>
+                                                <td>@Model.BU437ULDMengeStunden</td>
+                                                <td>@Model.BU437ULDMengeProdu</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    ULD KG
+                                                </td>
+                                                <td>@Model.BU437ULDKGMenge</td>
+                                                <td>@Model.BU437ULDKGStunden</td>
+                                                <td>@Model.BU437ULDKGProdu</td>
+                                            </tr>
+
+
+
+
+                                        </table>
+                                    </div>
+
+
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-12">
+                                        <table id="tblscanner" class=" table table-sm table-responsive table-condensed ">
+                                            <thead>
+                                                <tr>
+                                                    <th>Gegenstand  </th>
+                                                    <th>BD420</th>
+                                                    <th>BD451</th>
+                                                    <th>BU320</th>
+                                                    <th>BU420</th>
+                                                    <th>BD437</th>
+                                                    <th>BU437</th>
+                                                </tr>
+                                            </thead>
+                                            <tr>
+                                                <td>Leihscanner</td>
+                                                <td>@Model.LeihscannerBD420</td>
+                                                <td>@Model.LeihscannerBD451 </td>
+                                                <td>@Model.LeihscannerBU320 </td>
+                                                <td>@Model.LeihscannerBU420</td>
+                                                <td>@Model.LeihscannerBD437</td>
+                                                <td>@Model.LeihscannerBU437</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Leihstapler</td>
+                                                <td>@Model.LeihstaplerBD420</td>
+                                                <td>@Model.LeihstaplerBD451</td>
+                                                <td>@Model.LeihstaplerBU320</td>
+                                                <td>@Model.LeihstaplerBU420</td>
+                                                <td>@Model.LeihstaplerBD437</td>
+                                                <td>@Model.LeihstaplerBU437</td>
+                                            </tr>
+                                            <tr>
+                                                <td>CDS Standard</td>
+                                                <td>@Model.CDSstandardBD420</td>
+                                                <td>@Model.CDSstandardBD451</td>
+                                                <td>@Model.CDSstandardBU320</td>
+                                                <td>@Model.CDSstandardBU420</td>
+                                                <td>@Model.CDSstandardBD437</td>
+                                                <td>@Model.CDSstandardBU437</td>
+                                            </tr>
+                                            <tr>
+                                                <td>CDS DGR</td>
+                                                <td>@Model.CDSdgrBD420</td>
+                                                <td>@Model.CDSdgrBD451</td>
+                                                <td>@Model.CDSdgrBU320</td>
+                                                <td>@Model.CDSdgrBU420</td>
+                                                <td>@Model.CDSdgrBD437</td>
+                                                <td>@Model.CDSdgrBU437</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Arbeitsunfall</td>
+                                                <td>@Model.ArbeitsunfallBD420</td>
+                                                <td>@Model.ArbeitsunfallBD451</td>
+                                                <td>@Model.ArbeitsunfallBU320</td>
+                                                <td>@Model.ArbeitsunfallBU420</td>
+                                                <td>@Model.ArbeitsunfallBD437</td>
+                                                <td>@Model.ArbeitsunfallBU437</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="form-row ">
+                                    <div class="col ">
+                                        <h3 class="text-danger card-title ">Freigabe zur Auswertung</h3>
+
+                                        <div class="form-group ml-auto">
+                                            @*<label asp-for="istfreigegeben" class="control-label ">Freigeben</label>*@
+                                            <Select asp-for="istfreigegeben" class="form-control ">
+                                                <option value="false" selected>Nicht freigeben.</option>
+                                                <option value="true">Jetzt freigeben.</option>
+
+                                            </Select>
+                                            <span asp-validation-for="istfreigegeben "></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="tab-pane" id="actiontracker" role="tabpanel" aria-labelledby="actiontracker-tab">
+                                <table id="tblactiontracker" class="table" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Topic</th>
+                                            <th>Priorität</th>
+                                            <th>Von</th>
+                                            <th>Bis</th>
+                                            <th>Beschreibung</th>
+                                            <th>Maßnahme</th>
+                                            <th>Aktion</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Topic</th>
+                                            <th>Priorität</th>
+                                            <th>Von</th>
+                                            <th>Bis</th>
+                                            <th>Beschreibung</th>
+                                            <th>Maßnahme</th>
+                                            <th>Aktion</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+
+
+                            <div class="tab-pane" id="flugplan" role="tabpanel" aria-labelledby="flugplan-tab">
+                                <table id="tblflugplan" class="table" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Flug</th>
+                                            <th>Depature</th>
+                                            <th>Reg</th>
+                                            <th>Extra</th>
+                                            <th>USG13</th>
+                                            <th>FACL</th>
+                                            <th>BCL</th>
+                                            <th>Dest</th>
+                                            <th>Einheiten gebaut</th>
+                                            <th>Einheiten offen</th>
+                                            <th>TPV/ Offload</th>
+                                            <th>Kommentar</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Flug</th>
+                                            <th>Depature</th>
+                                            <th>Reg</th>
+                                            <th>Extra</th>
+                                            <th>USG13</th>
+                                            <th>FACL</th>
+                                            <th>BCL</th>
+                                            <th>Dest</th>
+                                            <th>Einheiten gebaut</th>
+                                            <th>Einheiten offen</th>
+                                            <th>TPV/ Offload</th>
+                                            <th>Kommentar</th>
+
+                                        </tr>
+                                    </tfoot>
+                                </table>
+
+                            </div>
+
+                            <div class="tab-pane" id="anhang" role="tabpanel" aria-labelledby="anhang-tab">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-outline-secondary" type="button">Kategorie</button>
+                                    </div>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="inputGroupFile03">
+                                        <label class="custom-file-label" for="inputGroupFile03">Datei Auswählen</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    
+                    <div class="card-footer">
+
+
+                        <div class="clearfix">
+                            <input type="submit" value="Jetzt Speichern!" class="btn btn-danger float-right" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script type="text/javascript">
+        $('#list a').on('click', function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
+
+
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Supervisor/GetDataDrpDwnHDO",
+                dataType: "json",
+                data: "{}",
+                               success: function (data) {
+                    var s = '<option value="@Model.HDO">@Model.HDO</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        s += '<option value="' + data[i].name + '">' + data[i].name + '</option>';
+                    }
+                                   $("#HDO").html(s);
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Supervisor/GetDataDrpDwnSchichtleiter",
+                dataType: "json",
+                data: "{}",
+                               success: function (data) {
+                    var s = '<option value="@Model.SchichtleiterLF">@Model.SchichtleiterLF</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        s += '<option value="' + data[i].name + '">' + data[i].name + '</option>';
+                    }
+                                   $("#SchichtleiterLF").html(s);
+                }
+            });
+        });
+
+            $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Supervisor/GetDataDrpDwnSchichtleiter",
+                dataType: "json",
+                data: "{}",
+                               success: function (data) {
+                    var s = '<option value="@Model.SchichtleiterLF">@Model.SchichtleiterLF</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        s += '<option value="' + data[i].name + '">' + data[i].name + '</option>';
+                    }
+                                   $("#SchichtleiterPT").html(s);
+                }
+            });
+        });
+
+    $(document).ready(function () {
+        $('#tblactiontracker').DataTable({
+
+
+            "ajax": {
+                "url": "/Dutymanager/GetDataActiontrackerForOverview/@Model.ID",
+                "type": "GET",
+
+
+                "datatype" : "json"
+            },
+            "columns": [
+                { "data": "action" },
+                { "data": "priorität" },
+                { "data": "von" },
+                { "data": "bis" },
+                { "data": "beschreibung" },
+                { "data": "maßnahme" },
+                {
+                    "data": "id",
+                    "render": function (data, type, row, meta) {
+                        if (type === 'display') {
+                            data ='<a href="@Url.Content("~/Supervisor/EditActiontracker/")' + data + '">Edit</a> | <a href="@Url.Content("~/Supervisor/DetailsActiontracker/")' + data + '">Details</a>';
+                        }
+
+                        return data;
+                    }
+                }
+            ]
+
+        });
+    });
+
+</script>
+
+}
+

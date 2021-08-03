@@ -1,0 +1,69 @@
+﻿@model FACLSchichtbericht.Models.CreateBerichtBCLViewModel
+<partial name="_NavPartial" />
+<h1> BCL-Bericht anlegen</h1>
+<p>
+    <a asp-action="IndexBerichtBCL">Zurück </a>
+</p>
+<div class="card">
+    <div class="card-header"> BCL-Bericht</div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="CreateBerichtBCLPosition">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="schichtdatum" class="control-label">Datum an dem die Schicht bgeinnt oder begonnen hat.</label>
+                        <input asp-for="schichtdatum" id="schittyp" class="form-control"/>
+                        <span asp-validation-for="schichtdatum" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="schichttyp" class="control-label">Welchen Schichttyp möchten sie anlegen?</label>
+                        <select asp-for="schichttyp" id="schichttyp" class="form-control"></select>
+                        <span asp-validation-for="schichttyp" class="text-danger"></span>
+                    </div>
+
+
+
+                    <br />
+
+                    <div class="form-group">
+                        <input type="submit" value="Jetzt anlegen!" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer"> </div>
+</div>
+<p>
+    <a asp-action="IndexBerichtBCL">Zurück </a>
+</p>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Supervisor/GetDataschichttyp",
+                dataType: "json",
+                data: "{}",
+                success: function (data) {
+                    var s = '<option value="-1">Bitte auswählen</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        s += '<option value="' + data[i].name + '">' + data[i].name + '</option>';
+                    }
+                    $("#schichttyp").html(s);
+                }
+            });
+        });
+
+
+    </script>
+
+}

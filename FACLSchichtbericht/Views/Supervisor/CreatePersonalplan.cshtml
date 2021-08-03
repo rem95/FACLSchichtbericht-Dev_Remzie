@@ -1,0 +1,297 @@
+﻿<partial name="_NavPartial" />
+
+@model FACLSchichtbericht.Models.PersonalplanModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<br />
+
+<div class="card ">
+    <div class="card-header">
+        <h4 class="card-title">Personal anlegen</h4>
+    </div>
+    <form asp-action="CreatePersonalplan">
+        <div class="card-body">
+
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <h4 class="card-title">Personaldaten</h4>
+
+            <div class="form-row">
+                <div class="form-group  col-4">
+                    <label asp-for="PK" class="control-label"></label>
+                    <input asp-for="PK" class="form-control" />
+                    <span asp-validation-for="PK" class="text-danger"></span>
+                </div>
+                <div class="form-group col-4">
+                    <label asp-for="Nachname" class="control-label"></label>
+                    <input asp-for="Nachname" class="form-control" />
+                    <span asp-validation-for="Nachname" class="text-danger"></span>
+                </div>
+                <div class="form-group col-4">
+                    <label asp-for="Vorname" class="control-label"></label>
+                    <input asp-for="Vorname" class="form-control" />
+                    <span asp-validation-for="Vorname" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-2">
+                    <label asp-for="Brandschutzhelfer" class="control-label"></label>
+                    <select asp-for="Brandschutzhelfer" class="form-control">
+                        <option value="nein">Nein</option>
+                        <option value="ja">Ja</option>
+                    </select>
+                    <span asp-validation-for="Brandschutzhelfer" class="text-danger"></span>
+                </div>
+                <div class="form-group col-2">
+                    <label asp-for="Ersthelfer" class="control-label"></label>
+                    <select asp-for="Ersthelfer" class="form-control">
+                        <option value="nein">Nein</option>
+                        <option value="ja">Ja</option>
+                    </select>
+                    <span asp-validation-for="Ersthelfer" class="text-danger"></span>
+                </div>
+                <div class="form-group col-1">
+                    <label asp-for="anwesend" class="control-label"></label>
+                    <select asp-for="anwesend" class="form-control">
+                        <option value="nein">Nein</option>
+                        <option value="ja">Ja</option>
+                    </select>
+                    <span asp-validation-for="anwesend" class="text-danger"></span>
+                </div>
+                <div class="form-group col-3">
+                    <label asp-for="mehrarbeitgenehmight" class="control-label">Mehrarbeit genehmight</label>
+                    <select asp-for="mehrarbeitgenehmight" class="form-control">
+                        <option value="nein">Nein</option>
+                        <option value="ja">Ja</option>
+                    </select>
+                    <span asp-validation-for="mehrarbeitgenehmight" class="text-danger"></span>
+                </div>
+            </div>
+            <h4 class="card-title">Einsatzdaten</h4>
+
+            <div class="form-row">
+
+                <div class="form-group col-2">
+                    <label asp-for="AG" class="control-label"></label>
+                    <select asp-for="AG" class="form-control"></select>
+                    <span asp-validation-for="AG" class="text-danger"></span>
+                </div>
+                <div class="form-group col-2">
+                    <label asp-for="Gewerk" class="control-label"></label>
+                    <select asp-for="Gewerk" class="form-control"></select>
+                    <span asp-validation-for="Gewerk" class="text-danger"></span>
+                </div>
+                <div class="form-group col-2">
+                    <label asp-for="Bereich" class="control-label"></label>
+                    <select asp-for="Bereich" class="form-control"></select>
+                    <span asp-validation-for="Bereich" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-3">
+                    <label asp-for="Jobtitel" class="control-label"></label>
+                    <select asp-for="Jobtitel" class="form-control"></select>
+                    <span asp-validation-for="Jobtitel" class="text-danger"></span>
+                </div>
+                <div class="form-group col-3">
+                    <label asp-for="Einsatzals" class="control-label"></label>
+                    <select asp-for="Einsatzals" class="form-control"></select>
+                    <span asp-validation-for="Einsatzals" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-12">
+                    <label asp-for="Bemerkung" class="control-label"></label>
+                    <textarea asp-for="Bemerkung" class="form-control"></textarea>
+                    <span asp-validation-for="Bemerkung" class="text-danger"></span>
+                </div>
+            </div>
+
+            <h4 class="card-title">Referenz zu den Berichten</h4>
+
+
+            <div class="form-row">
+                <div class="form-group col-6">
+                    <label asp-for="schichttyp" class="control-label">Schicht</label>
+                    <select asp-for="schichttyp" id="schichttyp" class="form-control"></select>
+                    <span asp-validation-for="schichttyp" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-6">
+                    <label asp-for="datumgeplant" class="control-label">Datum</label>
+                    <input asp-for="datumgeplant" class="form-control" />
+                    <span asp-validation-for="datumgeplant" class="text-danger"></span>
+                </div>
+            </div>
+
+
+
+
+
+
+            <div hidden="hidden" class="form-group">
+                <label asp-for="erstelltvon" class="control-label"></label>
+                <input asp-for="erstelltvon" value="@User.Identity.Name" class="form-control" />
+                <span asp-validation-for="erstelltvon" class="text-danger"></span>
+            </div>
+            <div hidden="hidden" class="form-group">
+                <label asp-for="zuletztbearbeitetam" class="control-label"></label>
+                <input asp-for="zuletztbearbeitetam" value="@DateTime.Now" class="form-control" />
+                <span asp-validation-for="zuletztbearbeitetam" class="text-danger"></span>
+            </div>
+            <div hidden="hidden" class="form-group">
+                <label asp-for="zuletztbearbeitetvon" class="control-label"></label>
+                <input asp-for="zuletztbearbeitetvon" value="@User.Identity.Name" class="form-control" />
+                <span asp-validation-for="zuletztbearbeitetvon" class="text-danger"></span>
+            </div>
+            <div hidden="hidden" class="form-group">
+                <label asp-for="istabgeschlossen" class="control-label"></label>
+                <input asp-for="istabgeschlossen" value="false" class="form-control" />
+                <span asp-validation-for="istabgeschlossen" class="text-danger"></span>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-3">
+                    <label asp-for="BerichtBD420_ID" class="control-label">BerichtBD420 Referenznummer:</label>
+                    <input asp-for="BerichtBD420_ID" class="form-control" />
+                    <span asp-validation-for="BerichtBD420_ID" class="text-danger"></span>
+                </div>
+                <div class="form-group col-3">
+                    <label asp-for="BerichtBD451_ID" class="control-label">BerichtBD451 Referenznummer:</label>
+                    <input asp-for="BerichtBD451_ID" class="form-control" />
+                    <span asp-validation-for="BerichtBD451_ID" class="text-danger"></span>
+                </div>
+                <div class="form-group col-3">
+                    <label asp-for="BerichtBU320_ID" class="control-label">BerichtBU320 Referenznummer:</label>
+                    <input asp-for="BerichtBU320_ID" class="form-control" />
+                    <span asp-validation-for="BerichtBU320_ID" class="text-danger"></span>
+                </div>
+                <div class="form-group col-3">
+                    <label asp-for="BerichtBU420_ID" class="control-label">BerichtBU420 Referenznummer:</label>
+                    <input asp-for="BerichtBU420_ID" class="form-control" />
+                    <span asp-validation-for="BerichtBU420_ID" class="text-danger"></span>
+                </div>
+            </div>
+
+
+
+
+        </div>
+        <div class="card-footer ">
+            <div class="form-group clearfix">
+                <input type="submit" value="Jetzt anlegen" class="btn btn-danger float-right" />
+            </div>
+        </div>
+    </form>
+</div>
+
+<div>
+    <a asp-action="IndexPersonalplan">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Supervisor/GetDataDrpDwnAG",
+                dataType: "json",
+                data: "{}",
+                success: function (data) {
+                    var s = '<option value="-1">Bitte auswählen</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        s += '<option value="' + data[i].name + '">' + data[i].name + '</option>';
+                    }
+                    $("#AG").html(s);
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Supervisor/GetDataDrpDwnGewerk",
+                dataType: "json",
+                data: "{}",
+                success: function (data) {
+                    var s = '<option value="-1">Bitte auswählen</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        s += '<option value="' + data[i].name + '">' + data[i].name + '</option>';
+                    }
+                    $("#Gewerk").html(s);
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Supervisor/GetDataDrpDwnBereich",
+                dataType: "json",
+                data: "{}",
+                success: function (data) {
+                    var s = '<option value="-1">Bitte auswählen</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        s += '<option value="' + data[i].name + '">' + data[i].name + '</option>';
+                    }
+                    $("#Bereich").html(s);
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Supervisor/GetDataDrpDwnJobtitel",
+                dataType: "json",
+                data: "{}",
+                success: function (data) {
+                    var s = '<option value="-1">Bitte auswählen</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        s += '<option value="' + data[i].name + '">' + data[i].name + '</option>';
+                    }
+                    $("#Jobtitel").html(s);
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Supervisor/GetDataDrpDwnEinsatzals",
+                dataType: "json",
+                data: "{}",
+                success: function (data) {
+                    var s = '<option value="-1">Bitte auswählen</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        s += '<option value="' + data[i].name + '">' + data[i].name + '</option>';
+                    }
+                    $("#Einsatzals").html(s);
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Supervisor/GetDataschichttyp",
+                dataType: "json",
+                data: "{}",
+                success: function (data) {
+                    var s = '<option value="-1">Bitte auswählen</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        s += '<option value="' + data[i].name + '">' + data[i].name + '</option>';
+                    }
+                    $("#schichttyp").html(s);
+                }
+            });
+        });
+
+    </script>
+
+
+}
